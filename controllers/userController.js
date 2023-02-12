@@ -12,71 +12,66 @@ const getAllUsers = asyncHandler(async (req, res) => {
     res.json(users)
 })
 
-// Create New User (POST)
-const createNewUser = asyncHandler(async (req, res) => {
-    if (!req.body.id) {
-        return res.status(400).json({ message: "ID field is required" });
-    }    
+const createNewUser = asyncHandler(async (req, res) => {   
     const { username, password, roles } = req.body
-    // Ensure all fields are filled in
+    // Check if required fields are present
     if (!username || !password || !roles.length) {
-        return res.status(400).json({ message: 'All data fields are required'})
+      return res.status(400).json({ message: 'All data fields are required' });
     }
-    // Checking user doesn't already exist
-    const duplicate = await User.findOne({ username }).lean().exec()
-    if (duplicate) {
-        return res.status(409).json({ message: 'Username already exists in database'})
+    // Check if username already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(409).json({ message: 'Username already exists' });
     }
-    // Hashing password
-    const hashedPassword = await bcrypt.hash(password, 10)
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Create new user
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      roles,
+    });
+    const user = await newUser.save();
+    
+    return res.status(201).json({ message: 'User successfully created' });
+  });
 
-    const userObject = { username, "password": hashedPassword, roles }
-
-    //Creating user
-    const user = await User.create(userObject)
-
-    if (user) {
-        res.status(201).json({ message: 'User successfully created'})
-    } else {
-        res.status(400).json({ message: 'User could not be created'})
-    }
-
-})
 
 // Update User (PATCH)
 const updateUser = asyncHandler(async (req, res) => {
-    const { id, username, password, roles } = req.body
-    // Ensure all fields are filled in
+    const { id, username, password, roles } = req.body;
+    
+    // Validate required fields
     if (!id || !username || !roles.length) {
-        return res.status(400).json({ message: 'All data fields are required'})
+        return res.status(400).json({ message: 'ID, username and roles are required fields' });
     }
 
-    const user = await User.findById(id).exec()
-
+    // Check if user exists
+    const user = await User.findById(id).exec();
     if (!user) {
-        return res.status(400).json({ message: 'No user matching that ID was found'})
-    }
-    // Checking user doesn't already exist
-    const duplicate = await User.findOne({ username }).lean().exec()
-
-    if (duplicate && duplicate?._id.toString() !== id) {
-        return res.status(409).json({ message: 'Username already exists in the database' })
+        return res.status(400).json({ message: 'No user matching that ID was found' });
     }
 
-    user.username = username
-    user.roles = roles
+    // Check for duplicates
+    const duplicate = await User.findOne({ username }).lean().exec();
+    if (duplicate && duplicate._id.toString() !== id) {
+        return res.status(409).json({ message: 'Username already exists in the database' });
+    }
 
+    // Update user details
+    user.username = username;
+    user.roles = roles;
     if (password) {
-        user.password = await bcrypt.hash(password, 10)
+        user.password = await bcrypt.hash(password, 10);
     }
 
-    const updateUser = await user.save()
+    await user.save();
 
-    res.json({ message: 'Updated user'})
+    res.status(200).json({ message: 'User updated successfully' });
+});
 
-})
 
-// @dec Delete User (DELETE)
+// Delete User (DELETE)
 const deleteUser = asyncHandler(async (req, res) => {
     const { id } = req.body
 

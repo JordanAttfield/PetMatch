@@ -9,3 +9,19 @@
 20230212	06:07:10	8f573bd0-a61e-4694-a80f-4f7a90e8cc99	TypeError: Cannot read properties of undefined (reading 'toString')	PATCH	/users	undefined
 20230212	06:09:19	17b71a92-e9bc-42b6-be76-ac0470f41032	TypeError: Cannot read properties of undefined (reading 'toString')	PATCH	/users	undefined
 20230212	06:09:21	8ee6956e-bcbf-4bd3-8cbd-28985562165b	TypeError: Cannot read properties of undefined (reading 'toString')	PATCH	/users	undefined
+20230212	08:34:26	bbf75afd-3edd-46cf-bf8b-242813bd5079	SyntaxError: Unexpected string in JSON at position 65	POST	/animals	undefined
+20230212	08:34:31	411db3ab-d4e6-43c1-84d3-939c7aa9b7ee	ValidationError: Animal validation failed: sex: Path `sex` is required.	POST	/animals	undefined
+20230212	08:35:02	511b32fd-6769-40e6-84fa-6441892cfc25	ValidationError: Animal validation failed: sex: Path `sex` is required.	POST	/animals	undefined
+20230212	14:25:00	b41097ab-6d6c-44f5-9fa1-e8f497e7e001	ReferenceError: Cannot access 'newAnimal' before initialization	POST	/animals	undefined
+20230212	14:25:36	92a40b0d-60d5-4c2c-b2d1-fff768d72beb	ReferenceError: Cannot access 'Animal' before initialization	POST	/animals	undefined
+20230212	14:26:54	391bad47-11f9-4338-9408-6664776cd2c4	ReferenceError: Cannot access 'Animal' before initialization	POST	/animals	undefined
+20230212	14:26:55	13f59547-95bb-4bc1-afda-21d03d096522	ReferenceError: Cannot access 'Animal' before initialization	POST	/animals	undefined
+20230212	14:28:24	032d4016-ebae-4f2a-8665-f998be95d5d4	ReferenceError: Cannot access 'Animal' before initialization	POST	/animals	undefined
+20230212	14:44:11	4395798d-c62f-4470-851c-0650507f1531	SyntaxError: Unexpected token , in JSON at position 245	PATCH	/animals	undefined
+20230212	14:48:31	2d2acb48-0f0c-4e8a-aadd-e5f5c62fb085	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230212	14:48:45	2f9b994f-3f8b-4b3e-afe7-d5624c8fc9d8	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230212	14:48:46	167a37e4-b6a3-41be-91a7-fa7dcf51d370	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230212	14:48:51	11552493-ae60-4a28-94e0-aae83d20d0f2	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230212	14:48:52	0fc71ff1-0e58-4e2e-8da3-ffa339ec7651	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230212	14:49:14	08ef0caf-a86b-4f91-80f3-6fbceb00c8cd	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230212	14:49:19	62363fa1-f584-4779-a6f8-2de4584e4067	ReferenceError: id is not defined	PATCH	/animals	undefined

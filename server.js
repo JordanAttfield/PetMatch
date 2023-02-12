@@ -9,6 +9,7 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDatabase = require('./config/dbConnection')
 const mongoose = require('mongoose')
+mongoose.set('strictQuery', false);
 const PORT = process.env.PORT || 3500
 
 connectDatabase()
@@ -26,6 +27,8 @@ app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/', require('./routes/root'))
 
 app.use('/users', require('./routes/userRoutes'))
+
+app.use('/animals', require('./routes/animalRoutes'))
 
 app.all('*', (req, res) => {
     res.status(404)

@@ -6,13 +6,21 @@ const AnimalSchema = new mongoose.Schema({
         required: true
     },
     name: {
-        type: String,  
+        type: String, 
+        required: true 
     },
     age: {
         type: Number,
+    },
+    sex: {
+        type: String,
         required: true
     },
     photo: {
+        type: String,
+        required: true
+    },
+    medications: {
         type: String,
         required: true
     },

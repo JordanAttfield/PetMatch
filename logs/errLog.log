@@ -28,3 +28,9 @@
 20230216	06:09:43	5ea691bb-3de4-4a11-ac3a-cd1477747c92	ReferenceError: req is not defined	GET	/users	undefined
 20230216	06:10:00	5b4991c3-f0f4-4210-9ee0-9063c11e83af	ReferenceError: req is not defined	GET	/animals	undefined
 20230218	05:44:54	76ebe650-a3b3-4910-bcaa-a0b9b8aec0aa	TypeError: Cannot read properties of undefined (reading 'length')	POST	/users	undefined
+20230218	14:19:52	954f7fa5-3984-4cea-bcf0-99df075843e4	SyntaxError: Unexpected token L in JSON at position 39	POST	/users/login	undefined
+20230218	14:21:51	8da83a97-a3c3-43d9-b54b-757f6670e45d	SyntaxError: Unexpected token L in JSON at position 39	POST	/users/login	undefined
+20230218	14:21:53	26a1db8b-343a-4828-afae-cc29599f5bac	SyntaxError: Unexpected token L in JSON at position 39	POST	/users/login	undefined
+20230218	15:32:54	f0941464-9314-4ea6-94a9-7678d04956a0	TypeError: Cannot read properties of undefined (reading 'length')	POST	/users	undefined
+20230218	16:26:42	45757123-9042-4b18-b2fc-f683eea49411	ReferenceError: isAdmin is not defined	POST	/users	undefined
+20230218	16:27:18	87e2e356-992a-401b-ac47-6de2032729ec	ReferenceError: isAdmin is not defined	POST	/users	undefined

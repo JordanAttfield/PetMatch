@@ -1,9 +1,9 @@
 const User = require('../models/User')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
 
-
-// @dec Get all users (GET)
+// Get all users (GET)
 const getAllUsers = asyncHandler(async (req, res) => {
     const users = await User.find().select('-password').lean()  //stops find method from returning password and returning whole document
     // Checking if user exists, then return users
@@ -13,10 +13,10 @@ const getAllUsers = asyncHandler(async (req, res) => {
     res.json(users)
 })
 
-const createNewUser = asyncHandler(async (req, res) => {   
-    const { username, password, roles } = req.body
+const registerUser = asyncHandler(async (req, res) => {   
+    const { username, password, isAdmin} = req.body
     // Check if required fields are present
-    if (!username || !password || !roles.length) {
+    if (!username || !password || !isAdmin ) {
       return res.status(400).json({ message: 'All data fields are required' });
     }
     // Check if username already exists
@@ -30,7 +30,8 @@ const createNewUser = asyncHandler(async (req, res) => {
     const newUser = new User({
       username,
       password: hashedPassword,
-      roles,
+      isAdmin: isAdmin || false // default to false if not provided
+
     });
     const user = await newUser.save();
     
@@ -40,11 +41,11 @@ const createNewUser = asyncHandler(async (req, res) => {
 
 // Update User (PATCH)
 const updateUser = asyncHandler(async (req, res) => {
-    const { id, username, password, roles } = req.body;
+    const { id, username, password, isAdmin } = req.body;
     
     // Validate required fields
-    if (!id || !username || !roles.length) {
-        return res.status(400).json({ message: 'ID, username and roles are required fields' });
+    if (!id || !username) {
+        return res.status(400).json({ message: 'ID, username are required fields' });
     }
 
     // Check if user exists
@@ -61,7 +62,6 @@ const updateUser = asyncHandler(async (req, res) => {
 
     // Update user details
     user.username = username;
-    user.roles = roles;
     if (password) {
         user.password = await bcrypt.hash(password, 10);
     }
@@ -92,9 +92,74 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 })
 
+// Login User 
+const loginUser = asyncHandler(async (req, res) => {
+  const { username, password } = req.body
+
+  // Check if required fields are present
+  if (!username || !password) {
+    return res.status(400).json({ message: 'Both username and password are required' })
+  }
+
+  // Check if user exists
+  const user = await User.findOne({ username })
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid username or password' })
+  }
+
+  // Check if password is correct
+  const isMatch = await bcrypt.compare(password, user.password)
+  if (!isMatch) {
+    return res.status(401).json({ message: 'Invalid username or password' })
+  }
+
+  // Generate JWT token
+  const token = jwt.sign({ userId: user._id }, process.env.SECRET_ACCESS_TOKEN, {
+    expiresIn: '1h'
+  })
+
+  res.setHeader('Content-Type', 'application/json');
+  res.json({ message: 'Logged in successfully', token })
+})
+
+// Login an admin user
+const loginAdmin = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Find the admin user by username
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    // Check if the user is an admin
+    if (!user.isAdmin) {
+      return res.status(401).json({ message: 'You are not authorized to access this endpoint' });
+    }
+
+    // Check the password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    // Generate an access token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+
+    res.json({ token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 module.exports = {
     getAllUsers,
-    createNewUser,
+    registerUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser,
+    loginAdmin,
+   
 }

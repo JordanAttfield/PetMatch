@@ -30,6 +30,8 @@ app.use('/users', require('./routes/userRoutes'))
 
 app.use('/animals', require('./routes/animalRoutes'))
 
+// app.use('admin', require('./routes/adminRoutes'))
+
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {

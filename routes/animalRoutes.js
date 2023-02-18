@@ -7,6 +7,9 @@ router.route('/')
     .get(animalController.getAllAnimals)
     .post(animalController.createNewAnimal)
     .patch(animalController.updateAnimal)
+
+
+router.route('/:id')
     .delete(animalController.deleteAnimal)
 
 

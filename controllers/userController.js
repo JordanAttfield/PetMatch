@@ -2,6 +2,7 @@ const User = require('../models/User')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
+
 // @dec Get all users (GET)
 const getAllUsers = asyncHandler(async (req, res) => {
     const users = await User.find().select('-password').lean()  //stops find method from returning password and returning whole document
@@ -73,7 +74,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // Delete User (DELETE)
 const deleteUser = asyncHandler(async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
 
     if (!id) {
         return res.status(400).json({ message: 'User ID is required'})

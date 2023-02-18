@@ -25,3 +25,6 @@
 20230212	14:48:52	0fc71ff1-0e58-4e2e-8da3-ffa339ec7651	ReferenceError: id is not defined	PATCH	/animals	undefined
 20230212	14:49:14	08ef0caf-a86b-4f91-80f3-6fbceb00c8cd	ReferenceError: id is not defined	PATCH	/animals	undefined
 20230212	14:49:19	62363fa1-f584-4779-a6f8-2de4584e4067	ReferenceError: id is not defined	PATCH	/animals	undefined
+20230216	06:09:43	5ea691bb-3de4-4a11-ac3a-cd1477747c92	ReferenceError: req is not defined	GET	/users	undefined
+20230216	06:10:00	5b4991c3-f0f4-4210-9ee0-9063c11e83af	ReferenceError: req is not defined	GET	/animals	undefined
+20230218	05:44:54	76ebe650-a3b3-4910-bcaa-a0b9b8aec0aa	TypeError: Cannot read properties of undefined (reading 'length')	POST	/users	undefined

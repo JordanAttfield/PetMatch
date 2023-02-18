@@ -15,7 +15,7 @@ const getAllAnimals = asyncHandler(async (req, res) => {
 const createNewAnimal = asyncHandler(async (req, res) => { 
     const { animalType, name, age, sex, photo, medications, notes, adopted } = req.body
     // Ensure all fields are entered
-    if (!animalType|| !name || !age || !sex || !photo || !medications || !notes || !adopted) {
+    if (!animalType|| !name || !age || !sex || !photo || !medications || !notes ) {
         return res.status(400).json({ message: 'All data fields are required'})
     }
     // Checking animal doesn't already exist
@@ -71,7 +71,7 @@ const updateAnimal = asyncHandler(async (req, res) => {
 
 // Delete Animal (DELETE)
 const deleteAnimal = asyncHandler(async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
 
     if (!id) {
         return res.status(400).json({ message: 'Animal ID is required'})

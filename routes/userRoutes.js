@@ -9,11 +9,10 @@ const adminAuth = require('../middleware/admin');
 router.route('/')
     .get(userController.getAllUsers)
     .post(userController.registerUser)
-    .patch(userController.updateUser)
-
 
 router.route("/:id")
-    .delete(userController.deleteUser)
+  .patch(userController.updateUser)
+  .delete(userController.deleteUser);
 
 router.route('/login')
 .post(userController.loginUser)

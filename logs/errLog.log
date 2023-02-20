@@ -36,3 +36,14 @@
 20230218	16:27:18	87e2e356-992a-401b-ac47-6de2032729ec	ReferenceError: isAdmin is not defined	POST	/users	undefined
 20230220	22:34:19	9075ed0c-5507-4426-b892-5fa4b92e04ce	ReferenceError: id is not defined	PATCH	/animals/63f2d17938e2778e0131a4a0	http://localhost:3500
 20230220	22:34:57	c3919ede-63f7-47c5-8ea2-4811e08f4656	ReferenceError: id is not defined	PATCH	/animals/63f2d17938e2778e0131a4a0	http://localhost:3500
+20230220	23:24:15	886e1169-7ca8-496f-a6e0-e3bdd8332fba	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:24:25	0f51db3a-a9a7-4cda-a34a-79a0dbec93ed	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:24:44	3f79eba5-f5d5-4ca8-8895-239db04b4af7	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:25:45	f6e23eb0-2abc-4695-86cb-0caad6642608	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:26:09	8683e31b-d53c-4e5e-ad0c-2ffab11e7643	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:28:01	ca6ff34c-c190-4a6c-b489-7832341c77ec	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:28:24	a7546198-3322-4e71-a19b-02e164416179	ReferenceError: id is not defined	PATCH	/users/63f2e124b78e59702873e8a0	http://localhost:3500
+20230220	23:30:50	bb5cd78a-7a2d-4ea5-ba44-f08c7eb37c8d	ReferenceError: id is not defined	PATCH	/users/63f06a2eab013e55d7fc33d4	http://localhost:3500
+20230220	23:31:16	e79c3792-9a84-4633-93b8-b93c7762efbc	ReferenceError: id is not defined	PATCH	/users/63f06a2eab013e55d7fc33d4	http://localhost:3500
+20230220	23:36:10	92f4b35c-4c67-41fd-940f-d4b03b93dec8	ReferenceError: id is not defined	PATCH	/users/undefined	http://localhost:3500
+20230220	23:39:24	720c2321-a53b-407b-8719-161cae0ac47b	ValidationError: User validation failed: isAdmin: Cast to Boolean failed for value "on" (type string) at path "isAdmin" because of "CastError"	PATCH	/users/undefined	http://localhost:3500

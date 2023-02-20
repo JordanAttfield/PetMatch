@@ -41,27 +41,28 @@ const registerUser = asyncHandler(async (req, res) => {
 
 // Update User (PATCH)
 const updateUser = asyncHandler(async (req, res) => {
-    const { id, username, password, isAdmin } = req.body;
+    const { _id, username, password, isAdmin } = req.body;
     
     // Validate required fields
-    if (!id || !username) {
+    if (!_id || !username) {
         return res.status(400).json({ message: 'ID, username are required fields' });
     }
 
     // Check if user exists
-    const user = await User.findById(id).exec();
+    const user = await User.findById(_id).exec();
     if (!user) {
         return res.status(400).json({ message: 'No user matching that ID was found' });
     }
 
     // Check for duplicates
     const duplicate = await User.findOne({ username }).lean().exec();
-    if (duplicate && duplicate._id.toString() !== id) {
+    if (duplicate && duplicate._id.toString() !== _id) {
         return res.status(409).json({ message: 'Username already exists in the database' });
     }
 
     // Update user details
     user.username = username;
+    user.isAdmin = isAdmin;
     if (password) {
         user.password = await bcrypt.hash(password, 10);
     }

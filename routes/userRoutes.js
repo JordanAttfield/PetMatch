@@ -18,7 +18,7 @@ router.route("/:id")
 router.route('/login')
 .post(userController.loginUser)
 
-router.route('login/admin')
+router.route('/login/admin')
 .post(userController.loginAdmin)
 
 

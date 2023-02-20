@@ -16,7 +16,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {   
     const { username, password, isAdmin} = req.body
     // Check if required fields are present
-    if (!username || !password || !isAdmin ) {
+    if (!username || !password) {
       return res.status(400).json({ message: 'All data fields are required' });
     }
     // Check if username already exists
@@ -145,7 +145,7 @@ const loginAdmin = async (req, res) => {
     }
 
     // Generate an access token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user._id },process.env.SECRET_ACCESS_TOKEN);
 
     res.json({ token });
   } catch (error) {

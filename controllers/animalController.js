@@ -34,15 +34,15 @@ const createNewAnimal = asyncHandler(async (req, res) => {
 
 // Update Animal (PATCH)
 const updateAnimal = asyncHandler(async (req, res) => {
-    const { id, animalType, name, age, sex, photo, medications, notes, adopted } = req.body;
+    const { _id, animalType, name, age, sex, photo, medications, notes, adopted } = req.body;
     
     // Validate required fields
-    if (!id || !animalType|| !name || !age || !sex || !photo || !medications || !notes || !adopted) {
+    if (!_id || !animalType|| !name || !age || !sex || !photo || !medications || !notes) {
     return res.status(400).json({ message: 'All data fields are required'})
 }
 
     // Check if animal exists
-    const animal = await Animal.findById(id).exec();
+    const animal = await Animal.findById(_id).exec();
     if (!animal) {
         return res.status(400).json({ message: 'No animal matching that ID was found' });
     }

@@ -6,11 +6,10 @@ const animalController = require('../controllers/animalController')
 router.route('/')
     .get(animalController.getAllAnimals)
     .post(animalController.createNewAnimal)
-    .patch(animalController.updateAnimal)
 
-
-router.route('/:id')
-    .delete(animalController.deleteAnimal)
+router.route("/:id")
+  .patch(animalController.updateAnimal)
+  .delete(animalController.deleteAnimal);
 
 
 module.exports = router

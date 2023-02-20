@@ -34,3 +34,5 @@
 20230218	15:32:54	f0941464-9314-4ea6-94a9-7678d04956a0	TypeError: Cannot read properties of undefined (reading 'length')	POST	/users	undefined
 20230218	16:26:42	45757123-9042-4b18-b2fc-f683eea49411	ReferenceError: isAdmin is not defined	POST	/users	undefined
 20230218	16:27:18	87e2e356-992a-401b-ac47-6de2032729ec	ReferenceError: isAdmin is not defined	POST	/users	undefined
+20230220	22:34:19	9075ed0c-5507-4426-b892-5fa4b92e04ce	ReferenceError: id is not defined	PATCH	/animals/63f2d17938e2778e0131a4a0	http://localhost:3500
+20230220	22:34:57	c3919ede-63f7-47c5-8ea2-4811e08f4656	ReferenceError: id is not defined	PATCH	/animals/63f2d17938e2778e0131a4a0	http://localhost:3500

@@ -1,7 +1,11 @@
 const Animal = require('../models/Animal')
 const asyncHandler = require('express-async-handler')
+const multer = require('multer');
 
-// @dec Get all Animals (GET)
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
+
+// Get all Animals (GET)
 const getAllAnimals = asyncHandler(async (req, res) => {
     const animals = await Animal.find().lean()  
     // Checking if animals exist, then return all animals
@@ -13,9 +17,9 @@ const getAllAnimals = asyncHandler(async (req, res) => {
 
 // Create New Animal (POST)
 const createNewAnimal = asyncHandler(async (req, res) => { 
-    const { animalType, name, age, sex, photo, medications, notes, adopted } = req.body
+    const { animalType, name, age, sex, medications, notes, adopted } = req.body
     // Ensure all fields are entered
-    if (!animalType|| !name || !age || !sex || !photo || !medications || !notes ) {
+    if (!animalType|| !name || !age || !sex || !medications || !notes ) {
         return res.status(400).json({ message: 'All data fields are required'})
     }
     // Checking animal doesn't already exist
@@ -24,20 +28,40 @@ const createNewAnimal = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: 'That animal already exists in database'})
     }
 
-    const newAnimal = new Animal({ animalType, name, age, sex, photo, medications, notes, adopted })
+    // Get the file object from the request
+    const file = req.file;
+
+    // Check if file exists
+    if (!file) {
+        return res.status(400).json({ message: 'Photo file is required' });
+    }
+
+    // Create a new animal object with the file data
+    const newAnimal = new Animal({
+        animalType,
+        name,
+        age,
+        sex,
+        photo: {
+            data: file.buffer,
+            contentType: file.mimetype
+        },
+        medications,
+        notes,
+        adopted
+    })
 
     //Creating animal
     const createdAnimal = await newAnimal.save()
-        return res.status(201).json({ message: 'Animal successfully added' });
-        });
-
+    return res.status(201).json({ message: 'Animal successfully added' });
+});
 
 // Update Animal (PATCH)
 const updateAnimal = asyncHandler(async (req, res) => {
-    const { _id, animalType, name, age, sex, photo, medications, notes, adopted } = req.body;
+    const { _id, animalType, name, age, sex, medications, notes, adopted } = req.body;
     
     // Validate required fields
-    if (!_id || !animalType|| !name || !age || !sex || !photo || !medications || !notes) {
+    if (!_id || !animalType|| !name || !age || !sex || !medications || !notes) {
     return res.status(400).json({ message: 'All data fields are required'})
 }
 
@@ -53,19 +77,30 @@ const updateAnimal = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: 'Animal with this name already exists in the database' });
     }
 
-    // Update animal details
-    animal.animalType = animalType
-    animal.name = name
-    animal.age = age
-    animal.sex = sex
-    animal.photo = photo
-    animal.medications = medications
-    animal.notes = notes
-    animal.adopted = adopted
+   // Get the file object from the request
+   const file = req.file;
 
-    await animal.save();
+   // Update animal details
+   animal.animalType = animalType
+   animal.name = name
+   animal.age = age
+   animal.sex = sex
+   animal.medications = medications
+   animal.notes = notes
+   animal.adopted = adopted
 
-    res.status(200).json({ message: 'Animal updated successfully' });
+    // Check if file exists and update the photo data and contentType
+  if (file) {
+    animal.photo = {
+      data: file.buffer,
+      contentType: file.mimetype,
+    };
+  }
+
+  // Save updated animal to database
+  await animal.save();
+
+  res.status(200).json({ message: 'Animal updated successfully', animal });
 });
 
 

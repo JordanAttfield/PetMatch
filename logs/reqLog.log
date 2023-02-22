@@ -907,3 +907,11 @@
 20230220	23:44:55	d66c450e-7bbe-4e31-a016-df44c7c71872	GET	/users	undefined
 20230220	23:44:55	b818dc3d-580c-4802-aaf2-581a8b7f9bce	GET	/users	undefined
 20230220	23:45:48	e615342c-1a97-40ac-b8d4-4616b39da532	GET	/users	undefined
+20230223	06:21:11	fc89f610-45e2-431c-a48d-7176a674b348	POST	/animals	undefined
+20230223	06:21:59	5bd53a15-d155-4d57-b3d8-c07b64d9e547	POST	/animals	undefined
+20230223	06:22:01	15125cca-f6d3-4433-96ab-381289c5ade1	POST	/animals	undefined
+20230223	06:22:42	e7fbc90a-a305-4db1-8036-fcec993061c8	POST	/animals	undefined
+20230223	06:22:43	45961d2e-fae9-4982-95ab-a77e1728c759	POST	/animals	undefined
+20230223	06:23:10	e8f37420-0a13-4b90-b9cb-f08236aca48b	POST	/animals	undefined
+20230223	06:23:59	0fe887ed-63ca-4225-9d92-376579ac543d	POST	/animals	undefined
+20230223	06:24:08	cd84efc7-db07-454d-ab55-7ca2f3189183	POST	/animals	undefined

@@ -17,8 +17,8 @@ const AnimalSchema = new mongoose.Schema({
         required: true
     },
     photo: {
-        type: String,
-        required: true
+        data: Buffer,
+        contentType: String
     },
     medications: {
         type: String,

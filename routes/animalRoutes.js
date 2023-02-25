@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const animalController = require('../controllers/animalController');
-const multer = require('multer');
-const upload = multer();
+const uploadImage = require('../middleware/uploadImage');
 
 // Animal Route
 router.route('/')
   .get(animalController.getAllAnimals)
-  .post(upload.single('photo'), animalController.createNewAnimal);
+  .post(uploadImage, animalController.createNewAnimal);
 
 router.route('/:id')
-  .patch(upload.single('photo'), animalController.updateAnimal)
+  .patch(animalController.updateAnimal)
   .delete(animalController.deleteAnimal);
 
 module.exports = router;

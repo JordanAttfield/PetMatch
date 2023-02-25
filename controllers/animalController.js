@@ -1,6 +1,6 @@
 const Animal = require('../models/Animal')
 const asyncHandler = require('express-async-handler')
-const multer = require('multer');
+const multer = require('multer')
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
@@ -16,45 +16,47 @@ const getAllAnimals = asyncHandler(async (req, res) => {
 })
 
 // Create New Animal (POST)
-const createNewAnimal = asyncHandler(async (req, res) => { 
-    const { animalType, name, age, sex, medications, notes, adopted } = req.body
+const createNewAnimal = asyncHandler(async (req, res) => {
+    const { animalType, name, age, sex, medications, notes, adopted } = req.body;
+  
     // Ensure all fields are entered
-    if (!animalType|| !name || !age || !sex || !medications || !notes ) {
-        return res.status(400).json({ message: 'All data fields are required'})
+    if (!animalType || !name || !age || !sex || !medications || !notes) {
+      return res.status(400).json({ message: 'All data fields are required' });
     }
+  
     // Checking animal doesn't already exist
-    const duplicateName = await Animal.findOne({ name }).lean().exec()
+    const duplicateName = await Animal.findOne({ name }).lean().exec();
     if (duplicateName) {
-        return res.status(409).json({ message: 'That animal already exists in database'})
+      return res.status(409).json({ message: 'That animal already exists in database' });
     }
-
+  
     // Get the file object from the request
     const file = req.file;
-
+  
     // Check if file exists
     if (!file) {
-        return res.status(400).json({ message: 'Photo file is required' });
+      return res.status(400).json({ message: 'Photo file is required' });
     }
-
+  
     // Create a new animal object with the file data
     const newAnimal = new Animal({
-        animalType,
-        name,
-        age,
-        sex,
-        photo: {
-            data: file.buffer,
-            contentType: file.mimetype
-        },
-        medications,
-        notes,
-        adopted
-    })
-
+      animalType,
+      name,
+      age,
+      sex,
+      photo: {
+        data: file.buffer,
+        contentType: file.mimetype
+      },
+      medications,
+      notes,
+      adopted
+    });
+  
     //Creating animal
-    const createdAnimal = await newAnimal.save()
+    const createdAnimal = await newAnimal.save();
     return res.status(201).json({ message: 'Animal successfully added' });
-});
+  });
 
 // Update Animal (PATCH)
 const updateAnimal = asyncHandler(async (req, res) => {

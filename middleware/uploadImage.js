@@ -1,29 +1,39 @@
 const multer = require('multer');
 
-// Set up Multer storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/') // Set the destination folder for uploaded files
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
   },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop()) // Use a unique filename for uploaded files
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-// Set up Multer middleware
-const upload = multer({ storage: storage });
+const fileFilter = (req, file, cb) => {
+  // Check that the uploaded file is an image
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('File type not supported'), false);
+  }
+};
 
-// Middleware function to handle image uploads
+const upload = multer({ 
+  storage: storage,
+  fileFilter: fileFilter 
+}).single('photo'); 
+
 const uploadImage = (req, res, next) => {
-  upload.single('photo')(req, res, (err) => {
+  console.log('Middleware called')
+  upload(req, res, function (err) {
     if (err) {
-      return res.status(400).json({
-        success: false,
-        message: 'Error uploading image'
-      });
+      console.log(err)
+      res.status(400).json({ success: false, message: err.message });
+    } else {
+        console.log(req.file)
+      req.body.photo = req.file.filename;
+      next();
     }
-    next();
   });
 };
 

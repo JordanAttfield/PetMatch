@@ -45,12 +45,13 @@ const createNewAnimal = asyncHandler(async (req, res) => {
       age,
       sex,
       photo: {
+        filename: file.filename,
         data: file.buffer,
-        contentType: file.mimetype
+        contentType: file.mimetype,
       },
       medications,
       notes,
-      adopted
+      adopted,
     });
   
     //Creating animal

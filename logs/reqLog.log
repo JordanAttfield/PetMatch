@@ -953,3 +953,15 @@
 20230226	10:46:38	9a03b623-310d-4748-bbf3-fa9c626c7465	POST	/uploads	undefined
 20230226	10:46:42	ea603cf9-e888-4ef1-921c-f9c4790f69fa	POST	/uploads	undefined
 20230226	10:49:11	72d1230e-999f-4d68-aaa0-cc83200ebc11	POST	/images	undefined
+20230228	05:15:36	f9b67f5c-0cd8-4791-83e6-f6b61d06f74e	GET	/animals	undefined
+20230228	05:16:54	37119313-c6c6-4978-8760-4ccb9c79adc2	GET	/animals	undefined
+20230228	05:19:21	acd64d05-076d-45e8-857c-86eeb91ec37a	POST	/animals	undefined
+20230228	05:20:19	f2b35ea9-abc1-4c18-86c0-b66738ebc33d	POST	/animals	undefined
+20230228	05:34:21	41eece57-cc80-4a1b-adbd-5314ed1e8659	POST	/animals	undefined
+20230228	05:35:52	feb88156-26d4-424e-8642-a19a82ff55a5	POST	/animals	undefined
+20230228	05:36:01	174815df-d1b6-4a6b-b6a9-52cf5af64b5a	POST	/animals	undefined
+20230228	05:39:11	fecc6c62-2a48-4099-8203-f25a5fb7179e	PATCH	/animals	undefined
+20230228	05:39:21	0e2316a1-abb1-45b0-b934-d0c497979450	PATCH	/animals	undefined
+20230228	05:39:22	f5f35c5a-c56c-4f6b-b8fa-9cda71ac011a	PATCH	/animals	undefined
+20230228	05:39:40	25be3319-e817-4f38-b3cd-a3af72a322f4	GET	/animals/	undefined
+20230228	05:42:38	93cd0632-3c2d-45ec-9bad-977a6776dfb4	DELETE	/users	undefined

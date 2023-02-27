@@ -24,13 +24,11 @@ const upload = multer({
 }).single('photo'); 
 
 const uploadImage = (req, res, next) => {
-  console.log('Middleware called')
   upload(req, res, function (err) {
     if (err) {
       console.log(err)
       res.status(400).json({ success: false, message: err.message });
     } else {
-        console.log(req.file)
       req.body.photo = req.file.filename;
       next();
     }

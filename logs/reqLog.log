@@ -980,3 +980,5 @@
 20230303	04:37:36	5dc92661-38ae-409d-9a96-f3e5b1967142	POST	/users	undefined
 20230303	04:37:43	6f8e1ef4-9d41-4405-b62e-7e725426078b	POST	/users/login	undefined
 20230303	06:12:29	7b038bf1-851e-4e11-8bda-f9b8a6659a06	POST	/users/login	undefined
+20230303	06:16:41	ac00682a-54bf-4777-ae4f-16d2205064e6	POST	/users/login	undefined
+20230303	06:16:47	daa2ae6c-cb99-499d-acc1-a2952bae6e30	GET	/animals/	undefined

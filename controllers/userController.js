@@ -132,7 +132,6 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
-
 // Login User 
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body
@@ -176,6 +175,49 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 })
 
+const loginAdmin = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Find the admin user by username
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    // Check if the user is an admin
+    if (!user.isAdmin) {
+      return res.status(401).json({ message: 'You are not authorized to access this endpoint' });
+    }
+
+    // Check if password is correct
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
+
+    // Generate an access token
+    const token = jwt.sign({ userId: user._id },process.env.SECRET_ACCESS_TOKEN);
+    try {
+      // Generate JWT token
+      const token = jwt.sign({ userId: user._id }, process.env.SECRET_ACCESS_TOKEN, {
+        expiresIn: '1h'
+      })
+
+      res.setHeader('Content-Type', 'application/json');
+      res.json({ message: 'Logged in successfully', token })
+    } catch (err) {
+      // Handle JWT error
+      console.error(err)
+      res.status(500).json({ message: 'Error generating token' })
+    }
+  } catch (err) {
+    // Handle bcrypt error
+    console.error(err)
+    res.status(500).json({ message: 'Error comparing passwords' })
+  }
+};
+
 
 module.exports = {
     getAllUsers,
@@ -183,4 +225,5 @@ module.exports = {
     updateUser,
     deleteUser,
     loginUser,
+    loginAdmin
 }

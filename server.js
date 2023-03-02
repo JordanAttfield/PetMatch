@@ -6,6 +6,7 @@ const { logger } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const helmet = require("helmet")
 const corsOptions = require('./config/corsOptions')
 const connectDatabase = require('./config/dbConnection')
 const mongoose = require('mongoose')
@@ -15,6 +16,8 @@ const PORT = process.env.PORT || 3500
 connectDatabase()
 
 app.use(logger)
+
+app.use(helmet())
 
 app.use(cors(corsOptions))
 

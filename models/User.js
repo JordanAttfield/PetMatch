@@ -23,9 +23,4 @@ try {
   User = mongoose.model('User', userSchema);
 }
 
-// Add a method to the schema to check if a user is an admin
-userSchema.methods.isAdminUser = function() {
-  return this.isAdmin === true;
-}
-
 module.exports = User;

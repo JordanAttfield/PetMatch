@@ -965,3 +965,14 @@
 20230228	05:39:22	f5f35c5a-c56c-4f6b-b8fa-9cda71ac011a	PATCH	/animals	undefined
 20230228	05:39:40	25be3319-e817-4f38-b3cd-a3af72a322f4	GET	/animals/	undefined
 20230228	05:42:38	93cd0632-3c2d-45ec-9bad-977a6776dfb4	DELETE	/users	undefined
+20230302	04:37:05	1eaa29e8-bb23-4bbb-b9fb-8a3de5777a42	GET	/users	undefined
+20230302	04:37:18	3fe1343b-2f60-4764-b540-e321d5b69b40	GET	/animals	undefined
+20230302	04:38:32	bd68bd90-6cbe-4c8d-b953-01d5a74b6193	PATCH	/animals	undefined
+20230302	04:39:42	c7059ba1-f3d9-476a-a918-c456c6cb04e2	PATCH	/animals/63f6cf50547b9322dc42cadd	undefined
+20230302	04:40:26	b1a501ba-8969-4c43-b499-4daef6b08e66	DELETE	/animals/63f6cf50547b9322dc42cadd	undefined
+20230302	05:41:09	7fcb7052-7a11-4e25-9648-76aafe3e0c8a	GET	/	undefined
+20230302	05:44:02	89c88bce-3a9e-4740-92b1-cd475ad46157	GET	/	undefined
+20230302	05:51:36	d38d7322-dabb-40be-9b6a-536437cd28ff	GET	/	undefined
+20230302	06:11:33	c9feef5c-a641-4f4a-a2fb-bef6fd29645a	GET	/	undefined
+20230302	06:14:17	49e21b14-c6a7-4613-9439-1f35bb3d2cc2	GET	/	undefined
+20230302	06:19:13	c5471b61-21a2-42d1-a840-fa8190f30127	GET	/	undefined

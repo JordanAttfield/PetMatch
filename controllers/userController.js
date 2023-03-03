@@ -110,25 +110,24 @@ const updateUser = asyncHandler(async (req, res) => {
 // Delete User (DELETE)
 const deleteUser = asyncHandler(async (req, res) => {
   try {
-      const { id } = req.params;
-      if (!id) {
-          return res.status(400).json({ message: 'User ID is required' });
-      }
+    const { id } = req.params;
 
-      const user = await User.findById(id).exec();
-      if (!user) {
-          return res.status(400).json({ message: 'No user was found' });
-      }
+    if (!id) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
 
-      const result = await user.deleteOne();
-      if (result.deletedCount !== 1) {
-          return res.status(400).json({ message: 'Failed to delete user' });
-      }
+    const user = await User.findById(id);
 
-      res.json({ message: 'User deleted successfully' });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    await user.deleteOne();
+
+    res.json({ message: 'User deleted successfully' });
   } catch (error) {
-      console.error(error.message);
-      res.status(500).json({ message: 'Server error' });
+    console.error(error.message);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

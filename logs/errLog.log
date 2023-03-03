@@ -49,3 +49,4 @@
 20230220	23:39:24	720c2321-a53b-407b-8719-161cae0ac47b	ValidationError: User validation failed: isAdmin: Cast to Boolean failed for value "on" (type string) at path "isAdmin" because of "CastError"	PATCH	/users/undefined	http://localhost:3500
 20230228	05:19:21	ab768815-155c-4da7-b5d7-b85a49f2d1a8	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
 20230228	05:20:19	cf7df44e-a738-40fb-a533-ab1d0693293d	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
+20230303	10:58:37	d3c1cf95-c6b5-4339-aa5c-10850f2e1477	SyntaxError: Unexpected token } in JSON at position 80	PATCH	/users/640145131d558d9a063a233b	undefined

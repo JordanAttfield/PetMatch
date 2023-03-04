@@ -50,3 +50,7 @@
 20230228	05:19:21	ab768815-155c-4da7-b5d7-b85a49f2d1a8	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
 20230228	05:20:19	cf7df44e-a738-40fb-a533-ab1d0693293d	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
 20230303	10:58:37	d3c1cf95-c6b5-4339-aa5c-10850f2e1477	SyntaxError: Unexpected token } in JSON at position 80	PATCH	/users/640145131d558d9a063a233b	undefined
+20230304	13:41:12	5233da80-c2f8-43ba-8e11-2a746d9a1bac	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
+20230304	13:44:33	ea5127b1-e3e0-4176-9e46-a50b28fcb55d	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
+20230304	13:46:24	7f6e4673-5881-4697-b89f-ee2aaadeedfd	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
+20230304	13:52:54	e3b7b37d-f1b2-477a-9f76-c287631571e1	TypeError: Cannot read properties of undefined (reading 'filename')	POST	/animals	undefined
